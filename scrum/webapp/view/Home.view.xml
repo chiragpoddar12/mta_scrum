@@ -1,0 +1,27 @@
+<mvc:View controllerName="com.sap.scrum.controller.Home" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<VBox alignContent="Center" alignItems="Center" height="100%" width="100%" justifyContent="Center" direction="Column">
+							<FormattedText class="sapUiSmallMarginBottom" htmlText="{/name}"/>
+							<FormattedText class="sapUiSmallMarginBottom" htmlText="{/timer}" visible="{/scrumStarted}"/>
+							<ProgressIndicator class="sapUiSmallMarginBottom" percentValue="{/remainingTimePercentage}" showValue="false" width="300px"
+								state="{path: '/remainingTime', formatter: '.formatter.timerState'}" displayOnly="true" visible="{/scrumStarted}"/>
+							<Button text="Start Scrum" type="Emphasized" press="onStartScrumPressed" visible="{= !${/scrumStarted} }"></Button>
+							<FormattedText class="sapUiSmallMarginBottom" htmlText="{/timeUpText}" visible="{/timeUp}"/>
+						</VBox>
+					</content>
+					<footer>
+						<OverflowToolbar>
+							<Button text="Start Time" type="Emphasized" press="onStartTimePressed" visible="{/scrumStarted}" enabled="{= !${/personSpeaking} }"></Button>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button text="Next" type="Transparent" press="onNextPressed" visible="{/scrumStarted}"></Button>
+						</OverflowToolbar>
+					</footer>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
